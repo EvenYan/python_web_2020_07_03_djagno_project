@@ -101,7 +101,12 @@ def gen_score(request):
 
 def get_form(request):
     if request.method == "GET":
-        return render(request, 'my_app/form.html')
+        resp = render(request, 'my_app/form.html')
+        print(resp.content)
+        print(resp.charset)
+        print(resp)
+        resp.write("Hello Word")
+        return resp
     elif request.method == "POST":
         name = request.POST.get('name')
         passwd = request.POST.get('passwd')
