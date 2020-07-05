@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^$', home),
     url(r'^index/$', index),
     url(r'^post/$', save_post),
-    url(r'^post/(\d)', detail)
+    url(r'^post/(\d)', detail),
+    url(r'^update/(\d+)$', update_post),
+    url(r'^delete/(\d+)$', delete_post),
+    url(r'^gen_post/', gen_post),
 
 ]
