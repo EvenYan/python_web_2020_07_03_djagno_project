@@ -105,7 +105,7 @@ def get_form(request):
     elif request.method == "POST":
         name = request.POST.get('name')
         passwd = request.POST.get('passwd')
-        hobby = request.POST.get('hobby')
+        hobby = request.POST.getlist('hobby')
         print(name)
         print(passwd)
         print(hobby)
