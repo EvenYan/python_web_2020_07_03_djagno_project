@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^update/(\d+)$', update_post),
     url(r'^delete/(\d+)$', delete_post),
     url(r'^gen_post/', gen_post),
-
+    url(r'^gen_score/', gen_score),
+    url(r'^form', get_form),
 ]

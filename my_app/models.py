@@ -9,3 +9,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Score(models.Model):
+    name = models.CharField(max_length=10)
+    math = models.PositiveIntegerField()
+    chinese = models.PositiveIntegerField()
+
+    def __str__(self):
+        return self.name
