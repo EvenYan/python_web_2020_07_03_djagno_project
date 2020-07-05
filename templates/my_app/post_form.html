@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>编写博客</title>
+</head>
+<body>
+
+<form action="/post/", method="post">
+    {% csrf_token %}
+    文章标题：<input type="text" name="title" id=""> <br>
+    正文：<input type="text" name="body" id=""> <br>
+    <input type="submit" value="保存文章">
+
+</form>
+
+</body>
+</html>
