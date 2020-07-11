@@ -8,7 +8,7 @@
     <title>修改文章</title>
 </head>
 <body>
-<form action="/update/{{ post.id }}" method="post">
+<form action="{% url 'my:update' post.id %}" method="post">
     {% csrf_token %}
     修改后的文章标题： <input type="text" name="new_title" id=""><br>
     修改后的文章内容：<input type="text" name="new_body" id="">

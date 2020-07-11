@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    {{ people_info.name }}
+
+    {% for data in data_list %}
+        {{ forloop.counter }}:{{ data }}
+        {% ifequal forloop.counter 4 %}
+            Hi
+        {% endifequal %}
+    {% endfor %}
+    {{ "Hello"|truncatechars:4 }}
+
+    {% autoescape on %}
+        &nbsp;
+    {% endautoescape %}
+
+    {# 这是单行注释 #}
+    {% comment %}
+    多行注释
+    ads
+    f
+    adsf
+    adsf
+    {% endcomment %}
+
+    <!-- HTML的注释 -->
+</body>
+</html>

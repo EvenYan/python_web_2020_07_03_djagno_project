@@ -18,3 +18,12 @@ class Score(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class UserInfo(models.Model):
+    username = models.CharField(max_length=50)
+    email = models.EmailField()
+    passwd = models.CharField(max_length=400)
+
+    def __str__(self):
+        return self.username

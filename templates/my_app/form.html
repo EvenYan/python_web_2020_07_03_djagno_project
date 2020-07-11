@@ -5,14 +5,11 @@
     <title>表单填写</title>
 </head>
 <body>
-<form action="/form" method="post">
+<form action="{% url 'my:form' %}" method="post">
     {% csrf_token %}
     姓名：<input type="text" name="name" id=""> <br>
     密码：<input type="password" name="passwd" id=""> <br>
-    <input type="checkbox" value="唱歌", name="hobby"> 唱歌
-    <input type="checkbox" value="跳舞", name="hobby"> 跳舞
-    <input type="checkbox" value="阅读", name="hobby"> 阅读
-    <input type="submit" value="提交信息">
+    <input type="submit" value="注册">
 </form>
 </body>
 </html>

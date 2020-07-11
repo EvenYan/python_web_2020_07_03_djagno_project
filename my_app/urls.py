@@ -11,4 +11,8 @@ urlpatterns = [
     url(r'^gen_post/', gen_post, name='gen_post'),
     url(r'^gen_score/', gen_score, name='gen_score'),
     url(r'^form', get_form, name='form'),
+    url(r'^template_demo', template_demo, name='template_demo'),
+    url(r'^register/', register, name='register'),
+    url(r'^login/', login, name='login'),
+    url(r'^logout/', logout, name='logout'),
 ]
