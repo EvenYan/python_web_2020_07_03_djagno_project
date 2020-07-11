@@ -5,8 +5,9 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.db.models import Max, Min, Count, Avg, Sum, F, Q
 from django.urls import reverse
+from django.core.paginator import Paginator
 
-from my_app.models import Post, Score, UserInfo
+from my_app.models import Post, Score, UserInfo, Category
 
 
 # Create your views here.
@@ -38,10 +39,16 @@ def home(request):
     return HttpResponse("欢迎您 %s!" %name)
 
 
-def index(request):
+def index(request, num=1):
+    if not num:
+        num = 1
     post_list = Post.objects.all().values("id", "title")
-    print(post_list)
-    return render(request, 'my_app/index.html', context={"post_list": post_list})
+    paginator = Paginator(post_list, 10)
+    page = paginator.page(num)
+    page_list = page.object_list
+    page_range = paginator.page_range
+    print(page_list)
+    return render(request, 'my_app/index.html', context={"page_list": page_list, "page_range": page_range, 'page':page})
 
 
 def save_post(request):
@@ -86,10 +93,11 @@ def delete_post(request, id):
 
 
 def gen_post(request):
+    category = Category.objects.first()
     for i in range(100):
         title = "post" + str(random.randrange(100))
         body = "body of " + title
-        Post.objects.create(title=title, body=body)
+        Post.objects.create(title=title, body=body, category=category)
     return HttpResponse("生成了100篇文章！")
 
 
@@ -104,6 +112,7 @@ def gen_score(request):
 
 def get_form(request):
     if request.method == "GET":
+        # a = 10 / 0
         resp = render(request, 'my_app/form.html')
         print(resp.content)
         print(resp.charset)

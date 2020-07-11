@@ -1,16 +1,54 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
     <title>博客首页</title>
 </head>
 <body>
     <h1>博客列表</h1>
     <ul>
-        {% for post in post_list %}
-            <li style="color: gray"><a href="/post/{{ post.id }}">{{ post.title }}</a></li>
+        {% for post in page_list %}
+            <li style="color: gray"><a href="{% url 'my:detail' post.id %}">{{ post.title }}</a></li>
     {% endfor %}
     </ul>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+        {% if page.has_previous %}
+            <a href="{% url 'my:index' page.previous_page_number %}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        {% else %}
+            <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        {% endif %} 
+
+    </li>
+      {% for num in page_range %}
+          {% ifequal page.number num %}
+              <li class="active"><a href="{% url 'my:index' num %}">{{num}} <span class="sr-only">(current)</span></a></li>
+          {% else %}
+              <li class="disabled"><a href="{% url 'my:index' num %}">{{num}} <span class="sr-only">(current)</span></a></li>
+          {% endifequal %}
+      {% endfor %}
+    <li>
+        {% if page.has_next %}
+            <a href="{% url 'my:index' page.next_page_number %}" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        {% else %}
+            <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        {% endif %}
+
+    </li>
+  </ul>
+</nav>
 </body>
 </html>

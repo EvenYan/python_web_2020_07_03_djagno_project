@@ -3,7 +3,7 @@ from my_app.views import *
 
 urlpatterns = [
     url(r'^$', home, name='home'),
-    url(r'^index/$', index, name='index'),
+    url(r'^index/(\d*)$', index, name='index'),
     url(r'^post/$', save_post, name='post'),
     url(r'^post/(\d)', detail, name='detail'),
     url(r'^update/(\d+)$', update_post, name='update'),
